@@ -1,0 +1,20 @@
+{
+  "name": "capital-gains",
+  "version": "1.0.0",
+  "description": "CLI application for capital gains calculation",
+  "main": "dist/main.js",
+  "scripts": {
+    "start": "node ./dist/main.js",
+    "build": "tsc"
+  },
+  "keywords": [
+    "cli",
+    "capital-gains"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "typescript": "^5.3.3"
+  }
+}
