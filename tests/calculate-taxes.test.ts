@@ -1,4 +1,4 @@
-import { calculateGains } from "../src/utils/calculate-gains";
+import { calculateTaxes } from "../src/utils/calculate-taxes";
 import {
   case_1,
   case_2,
@@ -74,8 +74,8 @@ describe.each([
   },
 ])("given the operation cases", ({ operations, taxes }) => {
   it("should return the correct taxes", () => {
-    const gains = calculateGains(operations);
+    const result = calculateTaxes(operations);
 
-    expect(gains).toEqual(taxes);
+    expect(result).toEqual(taxes);
   });
 });
