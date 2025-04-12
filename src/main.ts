@@ -5,12 +5,14 @@ import { calculateTaxes } from "@/utils/calculate-taxes";
 
 async function main() {
   try {
-    const operations = await readFromStdin<ReadonlyArray<IOperation>>(
+    const operationsList = await readFromStdin<ReadonlyArray<IOperation>>(
       operationsMapper
     );
-    const taxes = calculateTaxes(operations);
 
-    console.log(taxes);
+    operationsList.forEach((operations) => {
+      const taxes = calculateTaxes(operations);
+      console.log(JSON.stringify(taxes) + "\n");
+    });
   } catch (error) {
     console.error(error);
     process.exit(1);

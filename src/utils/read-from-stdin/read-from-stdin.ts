@@ -24,10 +24,10 @@ async function readLines(acc: string[]): Promise<string[]> {
   return readLines([...acc, line]);
 }
 
-export async function readFromStdin<T>(mapper: (data: any) => T): Promise<T> {
+export async function readFromStdin<T>(
+  mapper: (data: any) => T
+): Promise<ReadonlyArray<T>> {
   const lines = await readLines([]);
 
-  const data = lines.join("\n");
-
-  return mapper(JSON.parse(data));
+  return lines.map((line) => mapper(JSON.parse(line)));
 }
