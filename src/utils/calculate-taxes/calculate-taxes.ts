@@ -73,6 +73,6 @@ function handleSell(state: IState, operation: IOperation): IState {
     ...state,
     quantity,
     accumulatedLoss: Math.min(0, totalProfit),
-    taxes: [...state.taxes, { tax }],
+    taxes: [...state.taxes, tax],
   };
 }

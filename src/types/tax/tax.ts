@@ -4,10 +4,10 @@ export interface ITax {
 
 const FEE = 0.2;
 
-export function calculateTax(profit: number): number {
+export function calculateTax(profit: number): ITax {
   if (profit < 0) {
-    return 0;
+    return { tax: 0 };
   }
 
-  return profit * FEE;
+  return { tax: profit * FEE };
 }
