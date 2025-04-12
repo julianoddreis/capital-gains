@@ -1,4 +1,4 @@
-import { IOperation, OperationType } from "../../../types/operation";
+import { IOperation, OperationType } from "@/types/operation";
 
 export const case_1: ReadonlyArray<IOperation> = [
   {

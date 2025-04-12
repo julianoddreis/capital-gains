@@ -1,6 +1,6 @@
-import { IOperation, OperationType } from "../../types/operation";
-import { calculateFee, ITax } from "../../types/tax";
-import { weightedAveragePrice } from "../weighted-average-price";
+import { IOperation, OperationType } from "@/types/operation";
+import { calculateTax, ITax } from "@/types/tax";
+import { weightedAveragePrice } from "@/utils/weighted-average-price";
 
 interface IState {
   readonly averagePrice: number;
@@ -57,16 +57,7 @@ function handleSell(state: IState, operation: IOperation): IState {
 
   const profit = sellingPrice - state.averagePrice * operation.quantity;
 
-  if (profit < 0) {
-    return {
-      ...state,
-      quantity,
-      accumulatedLoss: state.accumulatedLoss + profit,
-      taxes: [...state.taxes, { tax: 0 }],
-    };
-  }
-
-  if (sellingPrice <= 20000) {
+  if (profit > 0 && sellingPrice <= 20000) {
     return {
       ...state,
       quantity,
@@ -76,7 +67,7 @@ function handleSell(state: IState, operation: IOperation): IState {
 
   const totalProfit = state.accumulatedLoss + profit;
 
-  const tax = totalProfit > 0 ? calculateFee(totalProfit) : 0;
+  const tax = calculateTax(totalProfit);
 
   return {
     ...state,

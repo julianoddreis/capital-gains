@@ -1,14 +1,13 @@
-import { readFromStdin } from "./utils/read-from-stdin/read-from-stdin";
-import { IOperation } from "./types/operation";
-import { operationsMapper } from "./utils/operations-mapper/operations-mapper";
-import { calculateTaxes } from "./utils/calculate-taxes";
+import { IOperation } from "@/types/operation/operation";
+import { readFromStdin } from "@/utils/read-from-stdin";
+import { operationsMapper } from "@/utils/operations-mapper";
+import { calculateTaxes } from "@/utils/calculate-taxes";
 
 async function main() {
   try {
     const operations = await readFromStdin<ReadonlyArray<IOperation>>(
       operationsMapper
     );
-
     const taxes = calculateTaxes(operations);
 
     console.log(taxes);
