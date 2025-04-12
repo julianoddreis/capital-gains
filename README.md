@@ -2,6 +2,21 @@
 
 A command-line interface (CLI) application for calculating capital gains.
 
+## Technologies Used
+
+- Node.js
+- TypeScript
+- Jest (for testing)
+- ESLint (for code linting)
+- Prettier (for code formatting)
+
+Typescript was used because it is the language I have the most affinity with, I can guarantee type checking and run it in the terminal easily with nodejs.
+
+## Requirements
+
+- Node.js 18 or higher
+- npm (Node Package Manager)
+
 ## Installation
 
 ```bash
@@ -19,24 +34,19 @@ To run the application:
 ```bash
 # Run the application
 npm start
-
-OR
-
-chmod +x dist/main.js
-./dist/main.js
 ```
 
-## Available Commands
+## Testing
 
-- `calculate`: Calculate capital gains
-- `help`: Show help message
-
-## Examples
+To run the test suite:
 
 ```bash
-# Show help
-./dist/main.js help
+# Run all tests
+npm test
 
-# Calculate capital gains
-./dist/main.js calculate
+# Run tests in watch mode
+npm test -- --watch
+
+# Run tests with coverage report
+npm test -- --coverage
 ```

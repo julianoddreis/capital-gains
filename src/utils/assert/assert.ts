@@ -17,7 +17,7 @@ export const Assert: IAssert = {
   },
 
   object(value: any): asserts value is Record<string, any> {
-    if (typeof value !== "object" || value === null) {
+    if (typeof value !== "object" || value === null || Array.isArray(value)) {
       throw new Error(`${value} must be an object`);
     }
   },
