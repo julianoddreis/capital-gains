@@ -11,40 +11,63 @@ import {
   case_9,
 } from "./__fixtures__/operations";
 
-describe.each([
-  {
-    operations: case_1,
-    taxes: [{ tax: 0.0 }, { tax: 0.0 }, { tax: 0.0 }],
-  },
-  {
-    operations: case_2,
-    taxes: [{ tax: 0.0 }, { tax: 10000.0 }, { tax: 0.0 }],
-  },
-  {
-    operations: case_3,
-    taxes: [{ tax: 0.0 }, { tax: 0.0 }, { tax: 1000.0 }],
-  },
-  {
-    operations: case_4,
-    taxes: [{ tax: 0.0 }, { tax: 0.0 }, { tax: 0.0 }],
-  },
-  {
-    operations: case_5,
-    taxes: [{ tax: 0.0 }, { tax: 0.0 }, { tax: 0.0 }, { tax: 10000.0 }],
-  },
-  {
-    operations: case_6,
-    taxes: [
+describe("case 1", () => {
+  it("should return the correct taxes", () => {
+    const result = calculateTaxes(case_1);
+    expect(result).toEqual([{ tax: 0.0 }, { tax: 0.0 }, { tax: 0.0 }]);
+  });
+});
+
+describe("case 2", () => {
+  it("should return the correct taxes", () => {
+    const result = calculateTaxes(case_2);
+    expect(result).toEqual([{ tax: 0.0 }, { tax: 10000.0 }, { tax: 0.0 }]);
+  });
+});
+
+describe("case 3", () => {
+  it("should return the correct taxes", () => {
+    const result = calculateTaxes(case_3);
+    expect(result).toEqual([{ tax: 0.0 }, { tax: 0.0 }, { tax: 1000.0 }]);
+  });
+});
+
+describe("case 4", () => {
+  it("should return the correct taxes", () => {
+    const result = calculateTaxes(case_4);
+    expect(result).toEqual([{ tax: 0.0 }, { tax: 0.0 }, { tax: 0.0 }]);
+  });
+});
+
+describe("case 5", () => {
+  it("should return the correct taxes", () => {
+    const result = calculateTaxes(case_5);
+    expect(result).toEqual([
+      { tax: 0.0 },
+      { tax: 0.0 },
+      { tax: 0.0 },
+      { tax: 10000.0 },
+    ]);
+  });
+});
+
+describe("case 6", () => {
+  it("should return the correct taxes", () => {
+    const result = calculateTaxes(case_6);
+    expect(result).toEqual([
       { tax: 0.0 },
       { tax: 0.0 },
       { tax: 0.0 },
       { tax: 0.0 },
       { tax: 3000.0 },
-    ],
-  },
-  {
-    operations: case_7,
-    taxes: [
+    ]);
+  });
+});
+
+describe("case 7", () => {
+  it("should return the correct taxes", () => {
+    const result = calculateTaxes(case_7);
+    expect(result).toEqual([
       { tax: 0.0 },
       { tax: 0.0 },
       { tax: 0.0 },
@@ -54,15 +77,26 @@ describe.each([
       { tax: 0.0 },
       { tax: 3700.0 },
       { tax: 0.0 },
-    ],
-  },
-  {
-    operations: case_8,
-    taxes: [{ tax: 0.0 }, { tax: 80000.0 }, { tax: 0.0 }, { tax: 60000.0 }],
-  },
-  {
-    operations: case_9,
-    taxes: [
+    ]);
+  });
+});
+
+describe("case 8", () => {
+  it("should return the correct taxes", () => {
+    const result = calculateTaxes(case_8);
+    expect(result).toEqual([
+      { tax: 0.0 },
+      { tax: 80000.0 },
+      { tax: 0.0 },
+      { tax: 60000.0 },
+    ]);
+  });
+});
+
+describe("case 9", () => {
+  it("should return the correct taxes", () => {
+    const result = calculateTaxes(case_9);
+    expect(result).toEqual([
       { tax: 0.0 },
       { tax: 0.0 },
       { tax: 0.0 },
@@ -70,12 +104,7 @@ describe.each([
       { tax: 0.0 },
       { tax: 0.0 },
       { tax: 1000.0 },
-    ],
-  },
-])("given the operation cases", ({ operations, taxes }) => {
-  it("should return the correct taxes", () => {
-    const result = calculateTaxes(operations);
-
-    expect(result).toEqual(taxes);
+      { tax: 2400.0 },
+    ]);
   });
 });
