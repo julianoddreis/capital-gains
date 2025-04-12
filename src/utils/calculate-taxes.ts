@@ -19,70 +19,69 @@ const initialState: IState = {
 export function calculateTaxes(
   operations: ReadonlyArray<IOperation>
 ): ReadonlyArray<ITax> {
-  const result = operations.reduce<IState>((acc, operation) => {
+  const result = operations.reduce<IState>((state, operation) => {
     switch (operation.type) {
       case OperationType.Buy:
-        return handleBuy(acc, operation);
+        return handleBuy(state, operation);
 
       case OperationType.Sell:
-        return handleSell(acc, operation);
+        return handleSell(state, operation);
     }
   }, initialState);
 
   return result.taxes;
 }
 
-function handleBuy(acc: IState, operation: IOperation): IState {
-  const quantity = acc.quantity + operation.quantity;
+function handleBuy(state: IState, operation: IOperation): IState {
+  const quantity = state.quantity + operation.quantity;
 
   const averagePrice = weightedAveragePrice({
-    currentQuantity: acc.quantity,
-    currentAveragePrice: acc.averagePrice,
+    currentQuantity: state.quantity,
+    currentAveragePrice: state.averagePrice,
     buyingQuantity: operation.quantity,
     buyingPrice: operation.unitCost,
   });
 
   return {
-    ...acc,
+    ...state,
     averagePrice,
     quantity,
-    taxes: [...acc.taxes, { tax: 0 }],
+    taxes: [...state.taxes, { tax: 0 }],
   };
 }
 
-function handleSell(acc: IState, operation: IOperation): IState {
-  const quantity = acc.quantity - operation.quantity;
+function handleSell(state: IState, operation: IOperation): IState {
+  const quantity = state.quantity - operation.quantity;
 
   const sellingPrice = operation.quantity * operation.unitCost;
 
-  const profit = sellingPrice - acc.averagePrice * operation.quantity;
+  const profit = sellingPrice - state.averagePrice * operation.quantity;
 
   if (profit < 0) {
     return {
-      ...acc,
+      ...state,
       quantity,
-      accumulatedLoss: acc.accumulatedLoss + profit,
-      taxes: [...acc.taxes, { tax: 0 }],
+      accumulatedLoss: state.accumulatedLoss + profit,
+      taxes: [...state.taxes, { tax: 0 }],
     };
   }
 
   if (sellingPrice <= 20000) {
     return {
-      ...acc,
+      ...state,
       quantity,
-      taxes: [...acc.taxes, { tax: 0 }],
+      taxes: [...state.taxes, { tax: 0 }],
     };
   }
 
-  const totalProfit = acc.accumulatedLoss + profit;
+  const totalProfit = state.accumulatedLoss + profit;
 
   const tax = totalProfit > 0 ? calculateFee(totalProfit) : 0;
 
   return {
-    ...acc,
+    ...state,
     quantity,
-    accumulatedLoss:
-      acc.accumulatedLoss === 0 ? 0 : totalProfit > 0 ? 0 : totalProfit,
-    taxes: [...acc.taxes, { tax }],
+    accumulatedLoss: Math.min(0, totalProfit),
+    taxes: [...state.taxes, { tax }],
   };
 }
