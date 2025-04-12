@@ -1,6 +1,6 @@
-import { IOperation, OperationType } from "../domain/operation";
-import { calculateFee, ITax } from "../domain/tax";
-import { weightedAveragePrice } from "./weighted-average-price";
+import { IOperation, OperationType } from "../../types/operation";
+import { calculateFee, ITax } from "../../types/tax";
+import { weightedAveragePrice } from "../weighted-average-price";
 
 interface IState {
   readonly averagePrice: number;

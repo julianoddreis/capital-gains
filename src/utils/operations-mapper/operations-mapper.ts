@@ -1,5 +1,5 @@
-import { IOperation, OperationType } from "../domain/operation";
-import { Assert } from "./assert";
+import { IOperation, OperationType } from "../../types/operation";
+import { Assert } from "../assert";
 
 const FromJsonType: Record<"buy" | "sell", OperationType> = {
   buy: OperationType.Buy,

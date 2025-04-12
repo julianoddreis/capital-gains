@@ -1,4 +1,4 @@
-import { calculateTaxes } from "../src/utils/calculate-taxes";
+import { calculateTaxes } from "./calculate-taxes";
 import {
   case_1,
   case_2,

@@ -1,6 +1,6 @@
-import { readFromStdin } from "./utils/read-from-stdin";
-import { IOperation } from "./domain/operation";
-import { operationsMapper } from "./utils/operations-mapper";
+import { readFromStdin } from "./utils/read-from-stdin/read-from-stdin";
+import { IOperation } from "./types/operation";
+import { operationsMapper } from "./utils/operations-mapper/operations-mapper";
 
 async function main() {
   try {

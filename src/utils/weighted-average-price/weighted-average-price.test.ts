@@ -1,4 +1,4 @@
-import { weightedAveragePrice } from "../src/utils/weighted-average-price";
+import { weightedAveragePrice } from "./weighted-average-price";
 
 describe("give a list of operations", () => {
   it("should return the weighted average price", () => {
