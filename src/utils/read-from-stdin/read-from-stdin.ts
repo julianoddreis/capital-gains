@@ -24,9 +24,7 @@ async function readLines(acc: string[]): Promise<string[]> {
   return readLines([...acc, line]);
 }
 
-export async function readFromStdin<T>(
-  mapper: (data: any) => T
-): Promise<ReadonlyArray<T>> {
+export async function readFromStdin<T>(mapper: (data: any) => T): Promise<ReadonlyArray<T>> {
   const lines = await readLines([]);
 
   return lines.map((line) => mapper(JSON.parse(line)));

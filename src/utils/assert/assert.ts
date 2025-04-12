@@ -5,7 +5,7 @@ interface IAssert {
   string(value: any): asserts value is string;
   isKeyOf<T extends string | number>(
     value: any,
-    map: Record<T, any>
+    map: Record<T, any>,
   ): asserts value is keyof typeof map;
 }
 
@@ -36,7 +36,7 @@ export const Assert: IAssert = {
 
   isKeyOf<T extends string | number>(
     value: any,
-    map: Record<T, any>
+    map: Record<T, any>,
   ): asserts value is keyof typeof map {
     if (!map.hasOwnProperty(value)) {
       throw new Error(`${value} is not a key in the provided map`);

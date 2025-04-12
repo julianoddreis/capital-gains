@@ -11,8 +11,7 @@ export function weightedAveragePrice({
   buyingQuantity,
   buyingPrice,
 }: IWeightedAveragePriceParams): number {
-  const totalPrice =
-    currentQuantity * currentAveragePrice + buyingQuantity * buyingPrice;
+  const totalPrice = currentQuantity * currentAveragePrice + buyingQuantity * buyingPrice;
 
   const totalQuantity = currentQuantity + buyingQuantity;
 

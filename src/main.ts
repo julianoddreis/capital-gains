@@ -3,11 +3,9 @@ import { readFromStdin } from "@/utils/read-from-stdin";
 import { operationsMapper } from "@/utils/operations-mapper";
 import { calculateTaxes } from "@/utils/calculate-taxes";
 
-async function main() {
+async function main(): Promise<void> {
   try {
-    const operationsList = await readFromStdin<ReadonlyArray<IOperation>>(
-      operationsMapper
-    );
+    const operationsList = await readFromStdin<ReadonlyArray<IOperation>>(operationsMapper);
 
     operationsList.forEach((operations) => {
       const taxes = calculateTaxes(operations);

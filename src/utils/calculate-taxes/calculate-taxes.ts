@@ -16,9 +16,7 @@ const initialState: IState = {
   taxes: [],
 };
 
-export function calculateTaxes(
-  operations: ReadonlyArray<IOperation>
-): ReadonlyArray<ITax> {
+export function calculateTaxes(operations: ReadonlyArray<IOperation>): ReadonlyArray<ITax> {
   const result = operations.reduce<IState>((state, operation) => {
     switch (operation.type) {
       case OperationType.Buy:

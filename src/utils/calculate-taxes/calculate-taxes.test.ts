@@ -42,12 +42,7 @@ describe("case 4", () => {
 describe("case 5", () => {
   it("should return the correct taxes", () => {
     const result = calculateTaxes(case_5);
-    expect(result).toEqual([
-      { tax: 0.0 },
-      { tax: 0.0 },
-      { tax: 0.0 },
-      { tax: 10000.0 },
-    ]);
+    expect(result).toEqual([{ tax: 0.0 }, { tax: 0.0 }, { tax: 0.0 }, { tax: 10000.0 }]);
   });
 });
 
@@ -84,12 +79,7 @@ describe("case 7", () => {
 describe("case 8", () => {
   it("should return the correct taxes", () => {
     const result = calculateTaxes(case_8);
-    expect(result).toEqual([
-      { tax: 0.0 },
-      { tax: 80000.0 },
-      { tax: 0.0 },
-      { tax: 60000.0 },
-    ]);
+    expect(result).toEqual([{ tax: 0.0 }, { tax: 80000.0 }, { tax: 0.0 }, { tax: 60000.0 }]);
   });
 });
 
