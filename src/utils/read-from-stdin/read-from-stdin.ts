@@ -5,28 +5,27 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-function readLines(): Promise<string[]> {
+function question(): Promise<string> {
   return new Promise((resolve) => {
-    const lines: string[] = [];
-
-    function readLine() {
-      rl.question("> ", (line: string) => {
-        if (line.trim() === "") {
-          rl.close();
-          resolve(lines);
-        } else {
-          lines.push(line);
-          readLine();
-        }
-      });
-    }
-
-    readLine();
+    rl.question("> ", (answer) => {
+      resolve(answer);
+    });
   });
 }
 
+async function readLines(acc: string[]): Promise<string[]> {
+  const line = await question();
+
+  if (line.trim() === "") {
+    rl.close();
+    return acc;
+  }
+
+  return readLines([...acc, line]);
+}
+
 export async function readFromStdin<T>(mapper: (data: any) => T): Promise<T> {
-  const lines = await readLines();
+  const lines = await readLines([]);
 
   const data = lines.join("\n");
 
