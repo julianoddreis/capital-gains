@@ -1,20 +1,10 @@
-import { IOperation } from "@/types/operation/operation";
-import { readFromStdin } from "@/utils/read-from-stdin";
-import { operationsMapper } from "@/utils/operations-mapper";
-import { calculateTaxes } from "@/utils/calculate-taxes";
+import readline from "readline";
 
-async function main(): Promise<void> {
-  try {
-    const operationsList = await readFromStdin<ReadonlyArray<IOperation>>(operationsMapper);
+import { main } from "./capital-gains";
 
-    operationsList.forEach((operations) => {
-      const taxes = calculateTaxes(operations);
-      console.log(JSON.stringify(taxes) + "\n");
-    });
-  } catch (error) {
-    console.error(error);
-    process.exit(1);
-  }
-}
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 
-main();
+main(rl);

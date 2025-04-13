@@ -1,11 +1,6 @@
 import readline from "readline";
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
-function question(): Promise<string> {
+function question(rl: readline.Interface): Promise<string> {
   return new Promise((resolve) => {
     rl.question("> ", (answer) => {
       resolve(answer);
@@ -13,19 +8,22 @@ function question(): Promise<string> {
   });
 }
 
-async function readLines(acc: string[]): Promise<string[]> {
-  const line = await question();
+async function readLines(rl: readline.Interface, acc: string[]): Promise<string[]> {
+  const line = await question(rl);
 
   if (line.trim() === "") {
     rl.close();
     return acc;
   }
 
-  return readLines([...acc, line]);
+  return readLines(rl, [...acc, line]);
 }
 
-export async function readFromStdin<T>(mapper: (data: any) => T): Promise<ReadonlyArray<T>> {
-  const lines = await readLines([]);
+export async function readFromStdin<T>(
+  rl: readline.Interface,
+  mapper: (data: any) => T,
+): Promise<ReadonlyArray<T>> {
+  const lines = await readLines(rl, []);
 
   return lines.map((line) => mapper(JSON.parse(line)));
 }
