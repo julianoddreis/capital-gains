@@ -10,7 +10,7 @@ A command-line interface (CLI) application for calculating capital gains.
 - ESLint (for code linting)
 - Prettier (for code formatting)
 
-Typescript was used because it is the language I have the most affinity with, I can guarantee type checking and run it in the terminal easily with nodejs.
+Typescript was used because it is the language I have the most affinity with, I can guarantee type checking at build time and run it in the terminal easily with nodejs.
 
 ## Requirements
 
